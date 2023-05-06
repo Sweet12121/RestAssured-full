@@ -1,10 +1,14 @@
 package TestHTTPS;
 
+import io.restassured.specification.Argument;
+import org.hamcrest.Matcher;
 import org.testng.annotations.Test;
 
 import java.util.HashMap;
+import java.util.List;
 
 import static io.restassured.RestAssured.given;
+import static org.hamcrest.Matchers.equalTo;
 
 public class HTTPSrequest {
 
@@ -21,6 +25,21 @@ public class HTTPSrequest {
                 .statusCode(200)
                 .log().all();
     }
+    @Test
+    void getUserswithpage2(){
+
+        given()
+                .param("page",'2')
+
+                .when()
+                .get("https://reqres.in/api/users")
+                .then()
+                .statusCode(200)
+                .body("page", equalTo(2))
+                .log().all();
+    }
+
+
 
     @Test(priority = 2)
     void createUser() {
@@ -59,10 +78,7 @@ public class HTTPSrequest {
 
     @Test(priority = 4, dependsOnMethods = {"createUser"})
     void deleteUser() {
-
-
         given()
-
                 .when()
                 .delete("https://reqres.in/api/users/" + id)
                 .then()

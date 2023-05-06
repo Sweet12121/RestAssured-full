@@ -1,7 +1,5 @@
 package TestHTTPS;
 
-
-
 import static io.restassured.RestAssured.given;
 import org.junit.jupiter.api.Test;
 
@@ -9,7 +7,6 @@ public class TestHttpRequest {
 
 
     @Test
-
     void getUser(){
 
         given()

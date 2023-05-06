@@ -7,9 +7,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-
 import java.util.HashMap;
-
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.equalTo;
 
@@ -17,11 +15,8 @@ public class ParsingJSONResponseData {
 
     @Test
     void testJSONResponse() {
-
         given()
                 .contentType("application/json; charset=utf-8")
-
-
                 .when()
                 .get("https://reqres.in/api/users?page=2&id=5")
                 .then()
@@ -33,7 +28,6 @@ public class ParsingJSONResponseData {
         //.log().all()
         ;
     }
-
     @Test(priority = 2)
     void getJSONResponse() {
 

@@ -5,29 +5,29 @@ import io.restassured.http.Headers;
 import io.restassured.response.Response;
 import org.testng.annotations.Test;
 
-import javax.print.attribute.standard.MediaSize;
+import java.util.concurrent.TimeUnit;
 
 import static io.restassured.RestAssured.given;
-import static java.time.temporal.WeekFields.ISO;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.header;
 
-public class HeaderTest {
-
-
-
+public class ResponseTest {
 
     @Test
-    void HeaderTest(){
-        
-        given()
-        
-                .when()
-                .get("https://www.google.com/")
-          .then()
-                .header("Content-Type","text/html; charset=ISO-8859-1")
-                .and()
-                .header("Server","gws")
-                .log().headers();
+    void getResponse(){
+
+        Response response = given()
+                .when().get("https://reqres.in/api/users/2");
+
+
+        response.getHeaders();
+        response.getCookies();
+        response.getBody();
+        response.getTimeIn(TimeUnit.SECONDS);
+
+        System.out.println("The Response >>>>>>>>>: "+response.getHeaders());
+        System.out.println("The ResponseBODY >>>>>>>>>: "+response.getBody());
+        System.out.println("The Response COOKIES >>>>>>>>>: "+response.getCookies());
+        System.out.println("The Response >>>>>>>>>: "+response.getTimeIn(TimeUnit.SECONDS));
+
     }
 
     @Test(priority = 2)
@@ -36,6 +36,7 @@ public class HeaderTest {
         Response response = given()
                 .when()
                 .get("https://www.google.com/");
+
         //Get single header info
 
         String headerValue = response.getHeader("Content-Type");
@@ -49,6 +50,4 @@ public class HeaderTest {
             System.out.println(hd.getName()+"       "+hd.getValue());
         }
 
-    }
-}
-
+    }}
