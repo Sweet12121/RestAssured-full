@@ -11,7 +11,6 @@ import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.equalTo;
 
 public class HTTPSrequest {
-
     Object id = null;
 
     @Test(priority = 1)
@@ -27,7 +26,6 @@ public class HTTPSrequest {
     }
     @Test
     void getUserswithpage2(){
-
         given()
                 .param("page",'2')
 
